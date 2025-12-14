@@ -59,7 +59,7 @@ jobs:
   file-security-scan:
     runs-on: ubuntu-latest
     name: Trivy Filesystem Scan
-    needs: [code-quality-flake8, code-quality-black-fmt]
+    needs: [code-quality-flake8, code-quality-black-fmt, code-quality-pylint]
     steps:
       - name: Check out source repository
         uses: actions/checkout@v6
@@ -79,7 +79,7 @@ jobs:
         shell: bash
 
     if: ${{ always() }}
-    needs: [code-quality-flake8, code-quality-black-fmt, file-security-scan]
+    needs: [code-quality-flake8, code-quality-black-fmt, code-quality-pylint, file-security-scan]
 
     runs-on: ubuntu-latest
 
