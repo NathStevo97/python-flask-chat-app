@@ -30,16 +30,16 @@ def home():
                 "home.html", error="Please enter a room code.", code=code, name=name
             )
 
-        room = code
+        room_code = code
         if create is not False:
-            room = generate_unique_code(4)
-            rooms[room] = {"members": 0, "messages": []}
-        elif code not in rooms:
+            room_code = generate_unique_code(4)
+            rooms[room_code] = {"members": 0, "messages": []}
+        elif room_code not in rooms:
             return render_template(
                 "home.html", error="Room does not exist.", code=code, name=name
             )
 
-        session["room"] = room
+        session["room"] = room_code
         session["name"] = name
         return redirect(url_for("main.room"))
 
