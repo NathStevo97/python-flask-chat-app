@@ -4,7 +4,6 @@ from flask import Blueprint, render_template, request, session, redirect, url_fo
 from utils import generate_unique_code
 from models import rooms
 
-
 bp = Blueprint("main", __name__)
 
 
