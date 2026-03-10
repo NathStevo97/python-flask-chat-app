@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
 
-  code-quality-flake8:
+  code-quality-ruff:
 
     defaults:
       run:
@@ -12,7 +12,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    name: Flake8
+    name: Ruff
 
     steps:
       - name: Check out source repository
@@ -21,8 +21,12 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: "3.14"
-      - name: flake8 Lint
-        uses: py-actions/flake8@v2
+      - name: Install pyproject.toml dependencies
+        run: |
+          if [ -f "pyproject.toml" ]; then pip install uv && uv sync --extra dev; fi
+      - name: Analysing the code with ruff
+        run: |
+          uv run ruff check .
 
   code-quality-black-fmt:
     runs-on: ubuntu-latest
@@ -79,7 +83,7 @@ jobs:
         shell: bash
 
     if: ${{ always() }}
-    needs: [code-quality-flake8, code-quality-black-fmt, code-quality-pylint, file-security-scan]
+    needs: [code-quality-ruff, code-quality-black-fmt, code-quality-pylint, file-security-scan]
 
     runs-on: ubuntu-latest
 
