@@ -12,3 +12,10 @@ run-compose:
 
 stop-compose:
 	docker-compose down
+
+lint:
+	uv run ruff check .
+
+format:
+	uv run ruff format
+	uv run black *.py
