@@ -3,12 +3,12 @@ FROM python:3.14-slim-bookworm
 ENV FLASK_APP=/src/app/main.py
 
 # System deps:
-RUN pip install --no-cache-dir --upgrade poetry
+RUN pip install --no-cache-dir --upgrade uv
 
 WORKDIR /src/app
 
-# Copy Poetry files
-COPY pyproject.toml poetry.lock ./
+# Copy uv files
+COPY pyproject.toml uv.lock ./
 
 # Copy CSS files
 COPY static ./static
@@ -20,10 +20,10 @@ COPY templates ./templates
 COPY *.py ./*.py
 
 # Install project dependencies
-RUN poetry install
+RUN uv sync
 
 # Expose the port Flask is running on
 EXPOSE 5000
 
 # Set Entrypoint to run the Flask app
-ENTRYPOINT [ "poetry", "run", "python", "-m" , "flask", "run", "--host=0.0.0.0"]
+ENTRYPOINT [ "uv", "run", "python", "-m" , "flask", "run", "--host=0.0.0.0"]
