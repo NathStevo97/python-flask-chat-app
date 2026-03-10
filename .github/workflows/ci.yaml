@@ -51,10 +51,10 @@ jobs:
           python-version: "3.14"
       - name: Install pyproject.toml dependencies
         run: |
-          if [ -f "pyproject.toml" ]; then pip install poetry && poetry install; fi
+          if [ -f "pyproject.toml" ]; then pip install uv && uv sync --extra dev; fi
       - name: Analysing the code with pylint
         run: |
-          poetry run pylint $(git ls-files '*.py')
+          uv run pylint $(git ls-files '*.py')
 
   file-security-scan:
     runs-on: ubuntu-latest

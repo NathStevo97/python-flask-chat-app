@@ -8,7 +8,7 @@ The app was made following the tutorial described here: <insert link>
 ### Essential
 
 - [Python (Required)](https://www.python.org/)
-- [Poetry (Required)](https://python-poetry.org/)
+- [UV (Required)](https://docs.astral.sh/uv/)
 
 ### Optional
 
@@ -19,7 +19,7 @@ The app was made following the tutorial described here: <insert link>
 
 ### Local App
 
-To run: `poetry run python ./main.py`, open two or more tabs at the IP address specified in the script and begin chatting.
+To run: `uv run python ./main.py`, open two or more tabs at the IP address specified in the script and begin chatting.
 
 ### Docker
 
