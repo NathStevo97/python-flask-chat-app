@@ -9,3 +9,8 @@ jobs:
       steps:
         - name: Check out source repository
           uses: actions/checkout@v6
+
+        - name: Snyk Code & Dependencies
+          uses: snyk/actions/python@master
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}

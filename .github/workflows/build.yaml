@@ -28,6 +28,14 @@ jobs:
       run: |
         docker build -t docker.io/${{ secrets.DOCKERHUB_USERNAME }}/flask-chat:latest .
 
+    - name: Run Snyk to scan Docker image
+      uses: snyk/actions/docker@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        image: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/flask-chat:latest
+        args: --severity-threshold=high
+
     - name: Docker Push - Flask-Chat
       id: push-flask-chat
       run: |
