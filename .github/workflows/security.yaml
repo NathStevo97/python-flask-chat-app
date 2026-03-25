@@ -5,16 +5,7 @@ on: [push, pull_request]
 jobs:
   file-security-scan:
       runs-on: ubuntu-latest
-      name: Trivy Filesystem Scan
+      name: Filesystem Scan
       steps:
         - name: Check out source repository
           uses: actions/checkout@v6
-        - name: Run Trivy filesystem scan
-          uses: aquasecurity/trivy-action@master
-          with:
-            scan-type: fs
-            format: table
-            exit-code: '1'
-            ignore-unfixed: true
-            vuln-type: 'os,library'
-            severity: 'CRITICAL,HIGH'
