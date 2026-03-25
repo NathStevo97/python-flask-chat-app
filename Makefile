@@ -18,4 +18,6 @@ lint:
 
 format:
 	uv run ruff format
-	uv run black *.py
+
+install-dev:
+	uv sync --extra dev

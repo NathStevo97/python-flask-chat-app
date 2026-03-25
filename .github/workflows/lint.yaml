@@ -28,21 +28,6 @@ jobs:
         run: |
           uv run ruff check .
 
-  code-quality-black-fmt:
-    runs-on: ubuntu-latest
-    name: Black Formatting Check
-    steps:
-      - name: Check out source repository
-        uses: actions/checkout@v6
-      - name: Set up Python environment
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.14"
-      - name: black formatting check
-        uses: psf/black@stable
-        with:
-          options: --check .
-
   code-quality-pylint:
     runs-on: ubuntu-latest
     name: Pylint

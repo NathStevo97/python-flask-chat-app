@@ -12,9 +12,8 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "black>=26.1.0",
     "ruff>=0.15.5",
-    "pylint>=4.0.5"
+    "pylint>=4.0.5",
 ]
 
 [tool.ruff]
