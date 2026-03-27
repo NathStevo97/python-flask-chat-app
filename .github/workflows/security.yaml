@@ -5,12 +5,22 @@ on: [push, pull_request]
 jobs:
   file-security-scan:
       runs-on: ubuntu-latest
-      name: Filesystem Scan
+      strategy:
+        matrix:
+          python-version: ["3.114"]
+      name: UV-Secure Scan
       steps:
         - name: Check out source repository
           uses: actions/checkout@v6
+        - name: Install the latest version of uv and set the python version
+          uses: astral-sh/setup-uv@v7
+          with:
+            python-version: ${{ matrix.python-version }}
+        - name: Install uv-secure
+          run: uv tool install uv-secure
 
-        - name: Snyk Code & Dependencies
-          uses: snyk/actions/python@master
-          env:
-            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        - name: Scan for vulnerabilities (High)
+          run: uv-secure --format json --severity high
+
+        - name: Scan for vulnerabilities (Critical)
+          run: uv-secure --format json --severity critical
