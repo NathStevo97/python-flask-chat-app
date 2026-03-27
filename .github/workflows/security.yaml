@@ -9,15 +9,14 @@ jobs:
       steps:
         - name: Check out source repository
           uses: actions/checkout@v6
+
         - name: Install the latest version of uv and set the python version
           uses: astral-sh/setup-uv@v7
           with:
             python-version: "3.14"
+
         - name: Install uv-secure
           run: uv tool install uv-secure
 
-        - name: Scan for vulnerabilities (High)
+        - name: Scan for vulnerabilities (High + Critical)
           run: uv-secure --format json --severity high
-
-        - name: Scan for vulnerabilities (Critical)
-          run: uv-secure --format json --severity critical
