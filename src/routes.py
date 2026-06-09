@@ -20,9 +20,7 @@ def home():
         create = request.form.get("create", False)
 
         if not name:
-            return render_template(
-                "home.html", error="Please enter a name.", code=code, name=name
-            )
+            return render_template("home.html", error="Please enter a name.", code=code, name=name)
 
         if join is not False and not code:
             return render_template(
@@ -34,9 +32,7 @@ def home():
             room_code = generate_unique_code(4)
             rooms[room_code] = {"members": 0, "messages": []}
         elif room_code not in rooms:
-            return render_template(
-                "home.html", error="Room does not exist.", code=code, name=name
-            )
+            return render_template("home.html", error="Room does not exist.", code=code, name=name)
 
         session["room"] = room_code
         session["name"] = name
@@ -54,6 +50,4 @@ def room():
     if room_id is None or session.get("name") is None or room_id not in rooms:
         return redirect(url_for("main.home"))
 
-    return render_template(
-        "room.html", code=room_id, messages=rooms[room_id]["messages"]
-    )
+    return render_template("room.html", code=room_id, messages=rooms[room_id]["messages"])

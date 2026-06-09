@@ -10,7 +10,7 @@ dependencies = [
     "python-socketio>=5.16.1",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
     "ruff>=0.15.5",
     "pylint>=4.0.5",
