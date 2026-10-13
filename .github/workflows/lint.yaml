@@ -20,7 +20,7 @@ jobs:
       - name: Set up Python environment
         uses: actions/setup-python@v6
         with:
-          python-version: "3.14"
+          python-version: "3.15"
       - name: Install pyproject.toml dependencies
         run: |
           if [ -f "pyproject.toml" ]; then pip install uv && uv sync --extra dev; fi
@@ -37,7 +37,7 @@ jobs:
       - name: Set up Python environment
         uses: actions/setup-python@v6
         with:
-          python-version: "3.14"
+          python-version: "3.15"
       - name: Install pyproject.toml dependencies
         run: |
           if [ -f "pyproject.toml" ]; then pip install uv && uv sync --extra dev; fi
